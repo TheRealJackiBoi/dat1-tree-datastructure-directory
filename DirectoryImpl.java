@@ -43,18 +43,17 @@ public class DirectoryImpl  implements Directory {
     public void printAllEntries(DirectoryEntry entry, int indents) {
 
         if(entry.isFile()) {
-            System.out.println(" ".repeat(indents) + "└" + "─" + entry.getName());
+            System.out.println("  ".repeat(indents) + "└" + "─" + entry.getName());
         }
         else {
-            System.out.println(" ".repeat(indents) + "└" + "─" + entry.getName());
+            System.out.println("  ".repeat(indents) + "└" + "─" + entry.getName());
             if (((Collection<DirectoryEntry>)entry.asDirectory().getChildren()).size() == 0) {
-                System.out.println(" ".repeat(indents + 1) + "└" + "─");
+                System.out.println("  ".repeat(indents + 1) + "└" + "─");
+                return;
             }
             for (DirectoryEntry e : entry.asDirectory().getChildren()) {
                 printAllEntries(e, indents + 1);
             }
         }
-
-
     }
 }
